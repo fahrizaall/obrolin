@@ -15,6 +15,11 @@ export default function Home({ data }) {
     <div className="container">
       <Head>
         <title>OBROLIN</title>
+        <meta name="description" content="Temukan topik obrolanmu disini" />
+        <meta property="og:title" content="obrolin" />
+        <meta property="og:description" content="Temukan topik obrolanmu disini" />
+        <meta property="og:url" content="https://www.obrolin.site/" />
+        <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2129625653442333"
