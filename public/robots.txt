@@ -1,0 +1,6 @@
+Sitemap: https://www.obrolin.com/api/posts-sitemap
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*

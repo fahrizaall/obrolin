@@ -15,9 +15,9 @@ export default function Home({ data }) {
     <div className="container">
       <Head>
         <title>OBROLIN</title>
-        <meta name="description" content="Temukan topik obrolanmu disini" />
+        <meta name="description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
         <meta property="og:title" content="obrolin" />
-        <meta property="og:description" content="Temukan topik obrolanmu disini" />
+        <meta property="og:description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
         <meta property="og:url" content="https://www.obrolin.site/" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
@@ -30,7 +30,8 @@ export default function Home({ data }) {
         <a href='/' className='text-2xl font-montserrat font-semibold'>OBROLIN</a>
       </nav>
       
-      <main className='w-screen h-screen flex justify-center items-center bg-orange-300'>
+      <main className='w-screen h-screen flex flex-col justify-center items-center bg-orange-300'>
+        <h1 className='absolute bottom-[-10rem] opacity-0 text-2xl font-extrabold font-montserrat w-2/3 mb-4'>Cari topik yang kamu <span>ingin kan</span></h1>
         <div className="w-3/4 md:w-2/3 h-2/4 md:h-4/6 md:m-auto border-4 border-slate-800 bg-white">
           <div className="pt-4 bg-sky-200">
             <div className="flex ml-4 mb-4 ">
@@ -42,7 +43,7 @@ export default function Home({ data }) {
           </div>
           <div className="p-4 h-5/6 flex flex-col justify-center items-center">
           
-            <p className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
+            <p className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>{ data[nomer].pertanyaan }</p>
 
             <button
               onClick={() => setNo(Math.floor(Math.random() * data.length))}
