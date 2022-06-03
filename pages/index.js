@@ -24,18 +24,18 @@ export default function Home({ data }) {
       </nav>
       
       <main className='w-screen h-screen flex justify-center items-center bg-orange-300'>
-        <div className="md:w-2/3 h-2/3 md:m-auto sm:mx-4 border-4 border-slate-800 bg-white">
+        <div className="md:w-2/3 h-2/3 md:m-auto mx-8 border-4 border-slate-800 bg-white">
           <div className="pt-4 bg-sky-200">
             <div className="flex ml-4 mb-4 ">
-              <div className="w-10 h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
-              <div className="w-10 h-10 bg-green-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
-              <div className="w-10 h-10 bg-yellow-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              <div className="w-8 md:w-10 h-8 md:h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              <div className="w-8 md:w-10 h-8 md:h-10 bg-green-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              <div className="w-8 md:w-10 h-8 md:h-10 bg-yellow-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
             </div>
             <div className="h-1 w-full bg-slate-800"></div>
           </div>
           <div className="p-4 h-5/6 flex flex-col justify-center items-center">
           
-            <p className='text-3xl font-bold leading-10 px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
+            <p className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
 
             <button
               onClick={() => setNo(Math.floor(Math.random() * data.length))}
