@@ -14,7 +14,7 @@ export default function Home({ data }) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>OBROLIN</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
       </Head>
@@ -39,7 +39,7 @@ export default function Home({ data }) {
 
             <button
               onClick={() => setNo(Math.floor(Math.random() * data.length))}
-              className='bg-teal-400 text-white border-2 border-slate-800 px-12 py-3 text-2xl font-opensans font-semibold'
+              className='bg-teal-400 text-white border-2 border-slate-800 px-12 py-3 text-xl md:gtext-2xl font-opensans font-semibold'
               >
               TOPIK LAINNYA
             </button>
