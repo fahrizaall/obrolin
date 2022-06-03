@@ -39,7 +39,7 @@ export default function Home({ data }) {
 
             <button
               onClick={() => setNo(Math.floor(Math.random() * data.length))}
-              className='bg-teal-400 text-white border-2 border-slate-800 px-12 py-3 text-xl md:gtext-2xl font-opensans font-semibold'
+              className='bg-teal-400 text-white border-2 border-slate-800 px-10 md:px-12 py-3 text-xl md:gtext-2xl font-opensans font-semibold'
               >
               TOPIK LAINNYA
             </button>
