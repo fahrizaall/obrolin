@@ -26,7 +26,7 @@ export default function Home({ data }) {
       </nav>
       
       <main className='w-screen h-screen flex justify-center items-center bg-orange-300'>
-        <div className="w-3/4 md:w-2/3 h-2/4 md:m-auto border-4 border-slate-800 bg-white">
+        <div className="w-3/4 md:w-2/3 h-2/4 md:h-4/6 md:m-auto border-4 border-slate-800 bg-white">
           <div className="pt-4 bg-sky-200">
             <div className="flex ml-4 mb-4 ">
               <div className="w-8 md:w-10 h-8 md:h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
