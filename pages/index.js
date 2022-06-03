@@ -17,6 +17,8 @@ export default function Home({ data }) {
         <title>OBROLIN</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2129625653442333"
+     crossorigin="anonymous"></script>
       </Head>
 
       <nav className='bg-white w-screen px-24 py-2 fixed top-0 flex justify-center'>
