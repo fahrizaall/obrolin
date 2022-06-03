@@ -4,7 +4,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'opensans': ['Open Sans', 'sans-serif'] ,
+        'worksans': ['Work Sans', 'sans-serif'], 
+        'montserrat': ['Montserrat', 'sans-serif'] 
+      },
+    },
   },
   plugins: [],
 }

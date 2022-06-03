@@ -16,24 +16,35 @@ export default function Home({ data }) {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <nav className='bg-gray-500 w-screen px-24 py-2'>
-        <a href='/' className='text-xl text-white'>Obrolin</a>
+      <nav className='bg-gray-500 w-screen px-24 py-2 fixed top-0'>
+        <a href='/' className='text-2xl text-white font-montserrat'>Obrolin</a>
       </nav>
       
-      <main className='px-24 py-6'>
-        <h1 className='text-2xl font-bold text-slate-800'>Pertanyaan Acak</h1>
-        
-        <p className='text-3xl font-bold px-2 py-4'>{ data[nomer].pertanyaan }</p>
+      <main className='w-screen h-screen flex justify-center items-center bg-orange-300'>
+        <div className="md:w-2/3 h-2/3 md:m-auto sm:mx-4 border-4 border-slate-800 bg-white">
+          <div className="pt-4 bg-sky-200">
+            <div className="flex ml-4 mb-4 ">
+              <div className="w-10 h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              <div className="w-10 h-10 bg-green-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              <div className="w-10 h-10 bg-yellow-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+            </div>
+            <div className="h-1 w-full bg-slate-800"></div>
+          </div>
+          <div className="p-4 h-5/6 flex flex-col justify-center items-center">
+          
+            <p className='text-2xl font-bold px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
 
-        <button
-          onClick={() => setNo(Math.floor(Math.random() * data.length))}
-          className='bg-blue-500 text-white px-4 py-1'
-        >
-          Tampilkan Pertanyaan Lain
-        </button>
+            <button
+              onClick={() => setNo(Math.floor(Math.random() * data.length))}
+              className='bg-teal-500 text-white border-2 border-slate-800 px-12 py-3 text-2xl font-opensans font-semibold'
+              >
+              TOPIK LAINNYA
+            </button>
+            </div>
+        </div>
       </main>
 
     </div>
