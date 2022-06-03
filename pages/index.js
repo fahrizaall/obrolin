@@ -19,8 +19,8 @@ export default function Home({ data }) {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <nav className='bg-gray-500 w-screen px-24 py-2 fixed top-0'>
-        <a href='/' className='text-2xl text-white font-montserrat'>Obrolin</a>
+      <nav className='bg-white w-screen px-24 py-2 fixed top-0 flex justify-center'>
+        <a href='/' className='text-2xl font-montserrat font-semibold'>OBROLIN</a>
       </nav>
       
       <main className='w-screen h-screen flex justify-center items-center bg-orange-300'>
@@ -35,11 +35,11 @@ export default function Home({ data }) {
           </div>
           <div className="p-4 h-5/6 flex flex-col justify-center items-center">
           
-            <p className='text-2xl font-bold px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
+            <p className='text-3xl font-bold leading-10 px-2 py-4 h-3/4 w-full'>{ data[nomer].pertanyaan }</p>
 
             <button
               onClick={() => setNo(Math.floor(Math.random() * data.length))}
-              className='bg-teal-500 text-white border-2 border-slate-800 px-12 py-3 text-2xl font-opensans font-semibold'
+              className='bg-teal-400 text-white border-2 border-slate-800 px-12 py-3 text-2xl font-opensans font-semibold'
               >
               TOPIK LAINNYA
             </button>
