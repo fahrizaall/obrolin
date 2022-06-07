@@ -3,18 +3,12 @@ import { useState, useEffect } from 'react'
 import clientPromise from '../lib/mongodb'
 
 export default function Home({ data }) {
-  const [nomer, setNo] = useState(0);
-
-  console.log(data)
-
-  useEffect(() => {
-    console.log(nomer)
-  }, [nomer])
+  const [nomer, setNo] = useState(Math.floor(Math.random() * data.length));
 
   return (
     <div className="container">
       <Head>
-        <title>OBROLIN</title>
+        <title>Obrolin | Random topic generator</title>
         <meta name="description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
         <meta property="og:title" content="obrolin" />
         <meta property="og:description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
@@ -23,7 +17,7 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Work+Sans&display=swap" rel="stylesheet"></link>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2129625653442333"
-     crossorigin="anonymous"></script>
+     crossOrigin="anonymous"></script>
       </Head>
 
       <nav className='bg-white w-screen px-24 py-2 fixed top-0 flex justify-center'>
@@ -31,7 +25,7 @@ export default function Home({ data }) {
       </nav>
       
       <main className='w-screen h-screen flex flex-col justify-center items-center bg-orange-300'>
-        <h1 className='absolute bottom-[-10rem] opacity-0 text-2xl font-extrabold font-montserrat w-2/3 mb-4'>Cari topik yang kamu ingin kan</h1>
+        <h1 className='absolute bottom-0 z-[-1] opacity-0 text-2xl font-extrabold font-montserrat w-2/3 mb-4'>Cari topik yang kamu ingin kan</h1>
         <div className="w-3/4 md:w-2/3 h-1/2 md:h-4/6 md:m-auto border-4 border-slate-800 bg-white">
           <div className="pt-4 bg-sky-200">
             <div className="flex ml-4 mb-4 ">
@@ -56,6 +50,8 @@ export default function Home({ data }) {
         </div>
       </main>
 
+      {/* <!-- Go to www.addthis.com/dashboard to customize your tools --> */}
+      <script async type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-629dfacef6fa0f23"></script>
     </div>
   )
 }
