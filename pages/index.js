@@ -4,6 +4,7 @@ import clientPromise from '../lib/mongodb'
 
 export default function Home({ data }) {
   const [nomer, setNo] = useState(Math.floor(Math.random() * data.length));
+  const [start, setStart] = useState(false);
 
   return (
     <div className="container">
@@ -24,31 +25,48 @@ export default function Home({ data }) {
         <a href='/' className='text-2xl font-montserrat font-semibold'>OBROLIN</a>
       </nav>
       
-      <main className='w-screen h-screen flex flex-col justify-center items-center bg-orange-300'>
-        <h1 className='absolute bottom-0 z-[-1] opacity-0 text-2xl font-extrabold font-montserrat w-2/3 mb-4'>Cari topik yang kamu ingin kan</h1>
-        <div className="w-3/4 md:w-2/3 h-1/2 md:h-4/6 md:m-auto border-4 border-slate-800 bg-white">
-          <div className="pt-4 bg-sky-200">
-            <div className="flex ml-4 mb-4 ">
-              <div className="w-8 md:w-10 h-8 md:h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
-              <div className="w-8 md:w-10 h-8 md:h-10 bg-green-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
-              <div className="w-8 md:w-10 h-8 md:h-10 bg-yellow-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+      <main className='w-screen'>
+        <div className="h-screen flex flex-col justify-center items-center bg-orange-300">
+          <div className="w-3/4 md:w-2/3 h-1/2 md:h-4/6 md:m-auto border-4 border-slate-800 bg-white">
+            <div className="pt-4 bg-sky-200">
+              <div className="flex ml-4 mb-4 ">
+                <div className="w-8 md:w-10 h-8 md:h-10 bg-blue-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+                <div className="w-8 md:w-10 h-8 md:h-10 bg-green-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+                <div className="w-8 md:w-10 h-8 md:h-10 bg-yellow-500 rounded-3xl border-4 border-slate-800 mr-2"></div>
+              </div>
+              <div className="h-1 w-full bg-slate-800"></div>
             </div>
-            <div className="h-1 w-full bg-slate-800"></div>
+            
+            <div className="p-4 h-5/6 flex flex-col justify-center items-center">
+            
+              {start ? (
+                <>
+                  <p className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>{data[nomer].pertanyaan}</p>
+                  
+                  <button
+                    onClick={() => setNo(Math.floor(Math.random() * data.length))}
+                    className='bg-teal-400 text-white border-2 border-slate-800 px-10 md:px-12 py-3 mb-2 text-xl md:gtext-2xl font-opensans font-semibold'
+                    >
+                    TOPIK LAINNYA
+                  </button>
+                </>
+              ) : (
+                <>
+                  <h1 className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>Cari topik yang kamu ingin kan</h1>
+                
+                  <button
+                    onClick={() => setStart(true)}
+                    className='bg-teal-400 text-white border-2 border-slate-800 px-10 md:px-12 py-3 mb-2 text-xl md:gtext-2xl font-opensans font-semibold'
+                    >
+                    Mulai
+                  </button>
+                </>
+              )}
+            </div>
           </div>
-          
-          <div className="p-4 h-5/6 flex flex-col justify-center items-center">
-          
-            <p className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>{ data[nomer].pertanyaan }</p>
-
-            <button
-              onClick={() => setNo(Math.floor(Math.random() * data.length))}
-              className='bg-teal-400 text-white border-2 border-slate-800 px-10 md:px-12 py-3 mb-2 text-xl md:gtext-2xl font-opensans font-semibold'
-              >
-              TOPIK LAINNYA
-            </button>
-            </div>
         </div>
       </main>
+      
 
       {/* <!-- Go to www.addthis.com/dashboard to customize your tools --> */}
       <script async type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-629dfacef6fa0f23"></script>
