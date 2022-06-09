@@ -10,9 +10,9 @@ export default function Home({ data }) {
     <div className="container">
       <Head>
         <title>Obrolin | Random topic generator</title>
-        <meta name="description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
+        <meta name="description" content="Dari ngOBROLIN hal yang santai sampai serius, cerita lucu sampai putus. Banyak banget topik yang bisa kamu temukan disini. Yuk mulai topik obrolanmu!" />
         <meta property="og:title" content="obrolin" />
-        <meta property="og:description" content="Bingung cari topik waktu bareng sama temen, pacar, atau keluarga? OBROLIN aja" />
+        <meta property="og:description" content="Dari ngOBROLIN hal yang santai sampai serius, cerita lucu sampai putus. Banyak banget topik yang bisa kamu temukan disini. Yuk mulai topik obrolanmu!" />
         <meta property="og:url" content="https://www.obrolin.site/" />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/favicon.ico" />
@@ -52,7 +52,7 @@ export default function Home({ data }) {
                 </>
               ) : (
                 <>
-                  <h1 className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>Cari topik yang kamu ingin kan</h1>
+                  <h1 className='text-xl md:text-3xl font-bold leading-8 md:leading-10 px-2 py-4 h-3/4 w-full font-worksans'>Mulai obrolanmu dengan ratusan topik acak di OBROLIN.</h1>
                 
                   <button
                     onClick={() => setStart(true)}
