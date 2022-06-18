@@ -209,8 +209,6 @@ export async function getServerSideProps() {
   // extract the data
   let data = await response.json();
 
-  // let datas = [{'id': "12", "pertanyaan": "apa?"}]
-
   return {
     props: {
       data: data,
