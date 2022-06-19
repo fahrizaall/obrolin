@@ -77,21 +77,55 @@ export default function index({ data }) {
 
     if (res.status == 200) {
       toast.success("Question deleted successfully", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      })
+      position: toast.POSITION.BOTTOM_RIGHT,
+    })
       location.reload()
     }
+
+    setEditId(0);
+    setDeleteConf(false);
+  }
+  
+  const giveCredentials = () => {
+    setVerified(true)
+
+    const item = {
+      status: true,
+      expiry: new Date().getTime() + 3600000,
+    }
+    localStorage.setItem("key", JSON.stringify(item))
+  }
+
+  function getCredentials() {
+    const itemStr = localStorage.getItem("key")
+    // if the item doesn't exist, return null
+    if (!itemStr) {
+      return null
+    }
+    const item = JSON.parse(itemStr)
+    // compare the expiry time of the item with the current time
+    if (new Date().getTime() > item.expiry) {
+      // If the item is expired, delete the item from storage
+      // and return null
+      localStorage.removeItem("key")
+      
+      return null
+    }
+
+    setVerified(item.status)
+
   }
   
   useEffect(() => {
     setSortedData(data)
+    getCredentials()
   }, [data])
 
   if (!verified) {
     return (
       <div className="absolute bottom-0 right-0">
         <input type="password" onChange={(e) => {
-          if (e.target.value === process.env.NEXT_PUBLIC_ADMIN_PASS) setVerified(true)
+          if (e.target.value === process.env.NEXT_PUBLIC_ADMIN_PASS) giveCredentials()
         }} />
       </div>
     )
