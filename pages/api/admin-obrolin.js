@@ -35,7 +35,7 @@ async function addQuestion(req, res) {
     const client = await clientPromise
     const db = client.db("question")
 
-    await db.collection("questions").insertOne({pertanyaan: data.pertanyaan})
+    await db.collection("questions").insertOne({pertanyaan: data.pertanyaan, kategori: data.kategori})
 
     res.status(201).json({message: "success adding data"})
   } catch (error) {
@@ -55,7 +55,8 @@ async function updateQuestion(req, res) {
       { _id: new ObjectId(data.id) },
       {
         $set: {
-          pertanyaan: data.pertanyaan
+          pertanyaan: data.pertanyaan,
+          kategori: data.kategori,
         }
       }
     )

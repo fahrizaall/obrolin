@@ -4,22 +4,39 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 export default function index({ data }) {
   const [editId, setEditId] = useState(0);
-  const [sortedData, setSortedData] = useState(data);
+  const [filteredData, setFilteredData] = useState(data);
   const [deleteConf, setDeleteConf] = useState(false);
   const [verified, setVerified] = useState(false);
 
   const [form, setForm] = useState({
-    "pertanyaan": ""
+    "pertanyaan": "",
+    "kategori": ""
   })
+  const [filter, setFilter] = useState({
+    kategori: "all",
+    sort: "old"
+  })
+
+  const handleFilter = (e) => {
+    const value = e.target.value
+    const name = e.target.name
+
+    console.log(name, value)
+    setFilter({ ...filter, [name]: value })
+  }
   
   const handleChange = (e) => {
-    setForm({ ...form, "pertanyaan": e.target.value })
+    const value = e.target.value
+    const name = e.target.name
+
+    setForm({ ...form, [name]: value })
   }
 
   const editQuestion = (question) => {
     setEditId(question._id)
-
-    setForm({ ...form, "pertanyaan": question.pertanyaan })
+    const category = "santai"
+      
+    setForm({ ...form, "pertanyaan": question.pertanyaan, "kategori": question.kategori ? question.kategori : category })
   }
 
   const handleSearch = (e) => {
@@ -37,7 +54,7 @@ export default function index({ data }) {
   }
 
   const addQuestion = async () => {
-    let question = {pertanyaan: form.pertanyaan}
+    let question = {pertanyaan: form.pertanyaan, kategori: form.kategori}
 
     let res = await fetch('/api/admin-obrolin', {
       method: 'POST',
@@ -54,8 +71,8 @@ export default function index({ data }) {
   }
 
   const updateQuestion = async () => {
-    let updatedData = { id: editId, pertanyaan: form.pertanyaan }
-    
+    let updatedData = { id: editId, pertanyaan: form.pertanyaan, kategori: form.kategori }
+
     let res = await fetch('/api/admin-obrolin', {
       method: 'PUT',
       body: JSON.stringify(updatedData)
@@ -117,9 +134,35 @@ export default function index({ data }) {
   }
   
   useEffect(() => {
-    setSortedData(data)
+    setFilteredData(data)
     getCredentials()
   }, [data])
+
+  useEffect(() => {
+    let filteredData = data;
+
+    if (filter.sort == 'new') filteredData = [...data].reverse()
+    
+    switch (filter.kategori) {
+      case 'santai':
+        filteredData = filteredData.filter((e) => e.kategori == 'santai')
+        break;
+      
+      case 'asmara':
+        filteredData = filteredData.filter((e) => e.kategori == 'asmara')
+        break;
+      
+      case 'deeptalk':
+        filteredData = filteredData.filter((e) => e.kategori == 'deeptalk')
+        break;
+      
+      default:
+        filteredData
+        break;
+    }
+        
+    setFilteredData(filteredData)
+  }, [filter])
 
   if (!verified) {
     return (
@@ -142,12 +185,23 @@ export default function index({ data }) {
         <div className="border p-2 mb-2">
           <h1 className='font-semibold mb-2'>Add New Question</h1>
           <div className="flex">
-            <input
-              type="text"
-              onFocus={(e) => { setEditId(0); setForm({ ...form, 'pertanyaan': e.target.value }) }}
-              onChange={(e) => handleChange(e)}
-              className='w-full mr-2 focus:outline-none bg-transparent border-b-[1px] border-teal-500'
-            />
+            <div className="flex flex-col w-full pr-2">
+              <label htmlFor="pertanyaan" className=' text-sm text-slate-500'>Pertanyaan</label>
+              <input
+                type="text"
+                onFocus={(e) => { setEditId(0); setForm({ ...form, 'pertanyaan': e.target.value }) }}
+                onChange={(e) => handleChange(e)}
+                className='w-full mr-2 focus:outline-none bg-transparent border-b-[1px] border-teal-500'
+              />
+
+              <label htmlFor="kategori" className='block text-sm text-slate-500 mt-4 mb-1'>Select a category</label>
+              <select name="kategori" id="kategori" onChange={(e) => handleChange(e)} className='mb-2 focus:outline-none bg-transparent border-b-[1px] border-teal-500'>
+                <option value="santai">santai</option>  
+                <option value="asmara">asmara</option>  
+                <option value="deeptalk">deeptalk</option>  
+              </select>
+            </div>
+            
             <button className='bg-teal-600 px-4 text-white' onClick={() => addQuestion() }>Add</button>
           </div>
         </div>
@@ -164,21 +218,44 @@ export default function index({ data }) {
           </div>
         </div>
 
-        <div className="flex justify-between mt-4 border-b">
-          <p className='text-sm text-slate-500'>Question</p>
-          <div className="flex">
-            
-            <button onClick={() => setSortedData([...data].reverse())} className="block bg-slate-400 text-white text-sm px-2 mr-2">New on top</button>
-            <button onClick={() => setSortedData(data)} className=' bg-slate-400 text-white text-sm px-2'>Old on top</button>
+        {/* Filter */}
+        <div className='flex justify-between mt-4 border-b text-sm text-slate-500'>
+          <p className=''>Question</p>
+          <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-1 mr-1">
+              <input type="checkbox" name="showKategori" id="showKategori" />
+              <label htmlFor="showKategori">Show Kategori</label>
+            </div>
+            <select name="kategori" id="kategori" onChange={(e) => handleFilter(e)} className='focus:outline-none border-[1px] border-slate-700'>
+              <option value="all">Semua</option>
+              <option value="santai">Santai</option>
+              <option value="asmara">Asmara</option>
+              <option value="deeptalk">Deeptalk</option>
+            </select>
+            <select name="sort" id="sort" onChange={(e) => handleFilter(e)} className='focus:outline-none border-[1px] border-slate-700'>
+              <option value="old">Old on top</option>
+              <option value="new">New on top</option>
+            </select>
+            {/* <button onClick={() => setSortedData([...data].reverse())} className="block bg-slate-400 text-white text-sm px-2 mr-2">New on top</button>
+            <button onClick={() => setSortedData(data)} className=' bg-slate-400 text-white text-sm px-2'>Old on top</button> */}
           </div>
         </div>
 
         {/* Display Question Data */}
         <div className="mt-2 mb-48">
-          {sortedData.map((question, i) => (
+          {filteredData.map((question, i) => (
             <div key={i}>
               <div className="block border p-2 mb-2">
                 <div className="">
+                  {/* kategori */}
+                  {question.kategori === 'santai' ? (
+                    <p className="block text-sm text-orange-500">{ question.kategori }</p>
+                  ) : question.kategori === 'asmara' ? (
+                    <p className="block text-sm text-pink-500">{ question.kategori }</p>
+                  ) : question.kategori === 'deeptalk' ? (
+                    <p className="block text-sm text-teal-500">{ question.kategori }</p>
+                  ) : ''}
+                  
                   <div className="flex justify-between">
                     <p className=''>{ i+1 }. {question.pertanyaan}</p>
                       
@@ -194,12 +271,22 @@ export default function index({ data }) {
                 {/* Update Question */}
                 {editId === question._id && !deleteConf ? (
                   <div className='block bg-slate-100 p-4 mt-2'>
+                    <label htmlFor="pertanyaan" className=' text-sm text-slate-500'>Pertanyaan</label>
                     <input
                       type="text"
+                      name='pertanyaan'
+                      id='pertanyaan'
                       className='focus:outline-none bg-transparent border-b-[1px] border-teal-500 w-full'
                       value={form.pertanyaan}
                       onChange={(e) => handleChange(e)}
                     />
+                      
+                    <label htmlFor="kategori" className='block text-sm text-slate-500 mt-4 mb-1'>Select a category</label>
+                    <select name="kategori" id="kategori" onChange={(e) => handleChange(e)} className='mb-2'>
+                      <option value="santai">santai</option>  
+                      <option value="asmara">asmara</option>  
+                      <option value="deeptalk">deeptalk</option>  
+                    </select>
                     
                     <div className="flex mt-2 gap-x-2">
                       <button className='bg-teal-600 px-4 text-white' onClick={() => updateQuestion() }>save</button>
