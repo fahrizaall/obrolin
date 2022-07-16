@@ -42,7 +42,7 @@ export default function index({ data }) {
   const handleSearch = (e) => {
     const inputValue = e.target.value
 
-    const result = data.filter(res => {
+    const result = filteredData.filter(res => {
       if (inputValue == "") {
         return res;
       } else {
@@ -50,7 +50,7 @@ export default function index({ data }) {
       }
     })
 
-    setSortedData(result)
+    setFilteredData(result)
   }
 
   const addQuestion = async () => {
@@ -180,6 +180,11 @@ export default function index({ data }) {
 
       <div className="my-4">
         <h2 className='font-semibold text-xl'>Data Random Topic Generator</h2>
+
+        <div className="mb-4">
+          <p>Jumlah Data</p>
+          <h1 className='font-bold text-3xl'>{ filteredData.length }</h1>
+        </div>
 
         {/* Adding new Question */}
         <div className="border p-2 mb-2">
